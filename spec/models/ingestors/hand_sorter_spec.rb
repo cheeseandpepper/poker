@@ -7,7 +7,7 @@ RSpec.describe Ingestors::HandSorter do
 
   describe '#sort' do
     it 'sorts from high to low card' do
-    	expect(subject.sort).to eq(sorted)
+      expect(subject.sort).to eq(sorted)
     end
   end
 end
