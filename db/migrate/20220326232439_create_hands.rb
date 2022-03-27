@@ -4,10 +4,10 @@ class CreateHands < ActiveRecord::Migration[7.0]
       t.string   :raw_string
       t.integer  :game_id
       t.integer  :player_id
+      t.integer  :hand_reference_id
 
-      # an interesting choice...
-      # i want cards to know their sort order
-      # so i don't have to sort each hand string 
+      # doing this for now,
+      # thinking about a refactor
       
       t.integer  :card_1_id
       t.integer  :card_2_id

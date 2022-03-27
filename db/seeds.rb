@@ -10,3 +10,6 @@ DbSeeds::Players.execute!
 
 #seed hand_references
 DbSeeds::HandReferences.execute!
+
+#seed game data
+DbSeeds::GameData.execute!

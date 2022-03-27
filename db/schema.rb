@@ -43,6 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_26_234101) do
     t.string "raw_string"
     t.integer "game_id"
     t.integer "player_id"
+    t.integer "hand_reference_id"
     t.integer "card_1_id"
     t.integer "card_2_id"
     t.integer "card_3_id"
