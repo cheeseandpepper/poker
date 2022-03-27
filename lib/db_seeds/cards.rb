@@ -8,6 +8,7 @@ module DbSeeds
               Card.create!(
                 rank:       card.first,
                 suit:       card.last, 
+                identifier: card,
                 sort_value: i,
                 name:       name_from_card(card)
               )

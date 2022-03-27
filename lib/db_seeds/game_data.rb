@@ -3,13 +3,9 @@ module DbSeeds
     class << self
       def execute!
         with_logging do
-          hand_data = []
-          
-          puts 'parsing file'
+          hand_data = []  
           parse_file(hand_data)
-          puts 'parsing file complete'
           
-          puts 'starting bulk insert'
           ActiveRecord::Base.transaction do
             Hand.insert_all(hand_data)
           end
@@ -20,6 +16,7 @@ module DbSeeds
       
       def add_hand_data(divider, hand_data)
         divider.split
+
         hand_eval = Ingestors::HandWinner.new(divider)
         hand_eval.find_winner
         game = Game.create(winner_id: hand_eval.winner_id)

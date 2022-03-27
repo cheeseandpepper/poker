@@ -63,19 +63,31 @@ module Ingestors
     end
 
     def first_hand_ids
-      lookups = ingestor.first_hand.chars.each_slice(2).to_a
-      
-      lookups.map do |pair|
-        Card.where(rank: pair[0], suit: pair[1]).first.id
-      end
+      return @first_hand_ids if @first_hand_ids
+      i = 0
+      identifiers = ingestor
+        .first_hand
+        .split do
+          result = i.odd?
+          i += 1
+          result
+        end
+
+      @first_hand_ids ||= Card.where(identifier: identifiers).pluck(:id)
     end
 
     def second_hand_ids
-      lookups = ingestor.second_hand.chars.each_slice(2).to_a
-      
-      lookups.map do |pair|
-        Card.where(rank: pair[0], suit: pair[1]).first.id
-      end
+      return @second_hand_ids if @second_hand_ids
+      i = 0
+      identifiers = ingestor
+        .second_hand
+        .split do
+          result = i.odd?
+          i += 1
+          result
+        end
+
+      @second_hand_ids ||= Card.where(identifier: identifiers).pluck(:id)
     end
   end
 end
