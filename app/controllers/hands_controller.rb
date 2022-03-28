@@ -1,6 +1,7 @@
 class HandsController < ApplicationController
   def index
-    scope = Hand.all
+    scope = Hand.all.order(hand_reference_id: :asc)
+    
     if params[:page]
       @page  = params[:page].to_i
       @hands = scope.limit(limit).offset(offset)
