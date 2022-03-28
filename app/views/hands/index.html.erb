@@ -1,0 +1,34 @@
+<table class='hands-table'>
+   <tbody>
+      <tr>
+        <th>Hand ID</th>
+        <th>Name</th>
+        <th>Played By</th>
+        <th>Cards Dealt</th>
+        <th>Rank</th>
+        <th>Was Winning Hand?</th>
+        <th>Reference ID</th>
+      </tr> 
+      
+      <% @hands.each do |hand| %>
+        <tr>
+          <td><%= hand.id %></td>
+          <td><%= hand.name %></td>
+          <td><%= hand.player.name %></td>
+          <td><%= render "shared/visual_hand", hand: hand %></td>
+          <td><%= hand.rank %></td>
+          <td><%= hand.winner? %></td>
+          <td><%= hand.hand_reference_id %></td>
+        </tr>
+      <% end %>
+   </tbody>
+</table>
+
+<section>
+  <% if @page == 1 %>
+    <%= link_to 'Next Page', games_path(page: @page + 1) %>
+  <% else %>
+    <%= link_to 'Prev Page', games_path(page: @page - 1) %>
+    <%= link_to 'Next Page', games_path(page: @page + 1) %>
+  <% end %>
+</section>

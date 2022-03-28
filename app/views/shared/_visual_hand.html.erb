@@ -1,0 +1,12 @@
+<div class='playingCards twoColors rotateHand'>
+  <ul class="hand">
+    <% hand.cards.each do |card| %>
+      <li>
+        <div class="card rank-<%= as_view_rank(card) %> <%= as_view_suit(card)%>">
+          <span class="rank"><%= card.rank %></span>
+          <span class="suit">&<%="#{as_view_suit(card)};"%></span>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

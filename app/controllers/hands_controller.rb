@@ -1,12 +1,12 @@
-class GamesController < ApplicationController
+class HandsController < ApplicationController
   def index
-    scope = Game.all.includes(:hands)
+    scope = Hand.all
     if params[:page]
       @page  = params[:page].to_i
-      @games = scope.limit(limit).offset(offset)
+      @hands = scope.limit(limit).offset(offset)
     else
       @page  = 1
-      @games = scope.limit(limit)
+      @hands = scope.limit(limit)
     end
   end
 

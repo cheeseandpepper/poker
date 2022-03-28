@@ -4,6 +4,7 @@ module DbSeeds
   class HandReferences < Base
     SORT_ORDER = %w(A K Q J T
       9 8 7 6 5 4 3 2).freeze
+    
     class << self
       def execute!
         with_logging do
@@ -13,7 +14,6 @@ module DbSeeds
             
             short_name = row.pop.strip
             long_name  = name_from_short_name(short_name)
-            
             hand_references << {
               name:          long_name,
               short_name:    short_name,

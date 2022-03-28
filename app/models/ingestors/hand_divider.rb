@@ -9,6 +9,7 @@ module Ingestors
 
     attr_reader   :two_hand_string
 
+    #todo, these probably belong in different objects
     def initialize(two_hand_string)
       @two_hand_string     = two_hand_string
       @first_ranks         = ''
@@ -39,23 +40,6 @@ module Ingestors
       
       self
     end
-
-    def first_hand_as_cards
-      [0, 2, 4, 6, 8].map { |i| first_hand.slice(i, 2) }
-    end
-
-    def second_hand_as_cards
-      [0, 2, 4, 6, 8].map { |i| second_hand.slice(i, 2) }
-    end
-
-    # def first_hand_as_card_ids
-    #   #Card.where(rank: )
-    # end
-
-    # def second_hand_as_card_ids
-    #   #Card.where()
-    # end
-
 
     def first_suits_required?
       first_suits.chars.uniq.size == 1

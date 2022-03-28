@@ -1,21 +1,19 @@
 module Ingestors
   class HandWinner
     attr_reader   :ingestor
-    attr_accessor :winner_id
+    attr_accessor :winner_id, :winning_hand_id
     def initialize(ingestor)
       @ingestor  = ingestor
     end
 
     def find_winner
       if player_1_ref.rank < player_2_ref.rank
-        self.winner_id = 1 #only 2 players in the universe
-        'player_1'
+        self.winning_hand_id = player_1_ref.id
+        self.winner_id       = 1
       else
-        self.winner_id = 2
-        'player_2' 
-      end
-    rescue => e
-      binding.pry
+        self.winning_hand_id = player_2_ref.id
+        self.winner_id       = 2
+      end  
     end
 
     def hands
@@ -63,31 +61,37 @@ module Ingestors
     end
 
     def first_hand_ids
-      return @first_hand_ids if @first_hand_ids
+      return @first_hand_ids if @first_hand_ids.present?
       i = 0
       identifiers = ingestor
         .first_hand
-        .split do
-          result = i.odd?
-          i += 1
-          result
-        end
-
-      @first_hand_ids ||= Card.where(identifier: identifiers).pluck(:id)
+        .chars
+        .each_slice(2)
+        .map(&:join)
+        
+        @first_hand_ids ||= ordered_card_ids_for(identifiers)
     end
 
     def second_hand_ids
-      return @second_hand_ids if @second_hand_ids
+      return @second_hand_ids if @second_hand_ids.present?
       i = 0
       identifiers = ingestor
         .second_hand
-        .split do
-          result = i.odd?
-          i += 1
-          result
-        end
+        .chars
+        .each_slice(2)
+        .map(&:join)
+        
+      @second_hand_ids ||= ordered_card_ids_for(identifiers)
+    end
 
-      @second_hand_ids ||= Card.where(identifier: identifiers).pluck(:id)
+    def ordered_card_ids_for(identifiers)
+      indexed_cards = Card
+        .where(identifier: identifiers)
+        .index_by(&:identifier)
+      
+      indexed_cards
+        .values_at(*identifiers)
+        .map(&:id)
     end
   end
 end

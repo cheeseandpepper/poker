@@ -19,10 +19,13 @@ module DbSeeds
 
         hand_eval = Ingestors::HandWinner.new(divider)
         hand_eval.find_winner
-        game = Game.create(winner_id: hand_eval.winner_id)
+        game = Game.create(
+          winner_id:       hand_eval.winner_id,
+          winning_hand_id: hand_eval.winning_hand_id
+        )
         
         hand_eval.hands.each do |hand|
-          hand_data << hand
+          hand_data << hand.merge(game_id: game.id)
         end
       end
       

@@ -1,0 +1,21 @@
+.hands-table {
+  width: 900px;
+  border-collapse: collapse;
+}
+
+.hands-table td {
+  border-bottom: 1pt solid black;
+}
+
+.hands-th {
+  text-align: left;
+  border-bottom: 1pt solid black;
+}
+
+.playingCards ul {
+  width: 120px;
+}
+
+.scaled-down {
+  transform: scale(0.5)
+}

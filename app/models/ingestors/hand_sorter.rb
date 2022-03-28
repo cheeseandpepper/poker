@@ -3,7 +3,7 @@ module Ingestors
     SORT_ORDER = %w(A K Q J T
       9 8 7 6 5 4 3 2).freeze
 
-    attr_reader :hand
+    attr_reader   :hand
     attr_accessor :sorted_ranks, :sorted_suits
 
     def initialize(hand)

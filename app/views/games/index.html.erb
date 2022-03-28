@@ -1,1 +1,30 @@
-Index page placeholder
+<table class='games-table'>
+   <tbody>
+      <tr>
+        <th>Game ID</th>
+        <th colspan="2">Player 1 Hand</th>
+        <th colspan="2">Player 2 Hand</th>    
+        <th>Winner</th>
+      </tr> 
+      
+      <% @games.each do |game| %>
+        <tr>
+        <td><%= game.id %></td>
+          <% game.hands.each do |hand| %>
+            <td><%= render "shared/visual_hand", hand: hand %></td>
+            <td><%= hand.name %></td>
+          <% end %>
+          <td><%= game.winner.name %></td>
+        </tr>
+      <% end %>
+   </tbody>
+</table>
+
+<section>
+  <% if @page == 1 %>
+    <%= link_to 'Next Page', games_path(page: @page + 1) %>
+  <% else %>
+    <%= link_to 'Prev Page', games_path(page: @page - 1) %>
+    <%= link_to 'Next Page', games_path(page: @page + 1) %>
+  <% end %>
+</section>
