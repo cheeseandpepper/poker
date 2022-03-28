@@ -18,4 +18,4 @@ It worked pretty well. With the data source I was able to
     down to about 20 seconds. 
   - I found some css for card hands and built out basic index views to show the data.
   - I built a very cheap pagination
-  - I containerized it
+  - I containerized it.

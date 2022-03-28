@@ -2,8 +2,9 @@ module Ingestors
   class HandWinner
     attr_reader   :ingestor
     attr_accessor :winner_id, :winning_hand_id
+    
     def initialize(ingestor)
-      @ingestor  = ingestor
+      @ingestor = ingestor
     end
 
     def find_winner
