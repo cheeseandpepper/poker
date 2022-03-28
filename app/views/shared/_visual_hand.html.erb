@@ -3,7 +3,7 @@
     <% hand.cards.each do |card| %>
       <li>
         <div class="card rank-<%= as_view_rank(card) %> <%= as_view_suit(card)%>">
-          <span class="rank"><%= card.rank %></span>
+          <span class="rank"><%= card.rank.gsub('T', '10') %></span>
           <span class="suit">&<%="#{as_view_suit(card)};"%></span>
         </div>
       </li>
