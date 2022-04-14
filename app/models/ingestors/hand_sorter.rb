@@ -12,17 +12,15 @@ module Ingestors
       @sorted_suits = nil
     end
 
-    def sort
+    def sort!
       sorted_hand = sort_hand(hand)
       sort_ranks_and_suits(sorted_hand)
       
-      sorted_hand
+      self
     end
 
     def sort_hand(hand)
       hand
-        .chars
-        .each_slice(2)
         .sort_by { |s| SORT_ORDER.index(s[0]) }
         .flatten
         .join
